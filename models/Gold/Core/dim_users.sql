@@ -25,7 +25,7 @@ final as (
         , a.country
         , a.continent
         , u.created_at_utc                                  as registered_at_utc
-        , u.updated_at                                 as last_updated_at_utc
+        , u.updated_at_utc                                  as last_updated_at_utc
         , datediff('day', u.created_at_utc, current_timestamp()) as days_since_registration
         , u.date_load
     from users u

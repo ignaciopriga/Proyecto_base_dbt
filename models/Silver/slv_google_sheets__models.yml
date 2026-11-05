@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: google_sheets
+    database: DEV_SILVER_DB
+    schema: google_sheets
+    tables:
+      - name: budget
+        columns:
+          - name: _row
+            data_tests:
+              - not_null
+              - unique
+              - relationships:
+                  arguments:
+                    to: ref('slv_sql_server_dbo__budgets')
+                    field: budget_id
+              
+
