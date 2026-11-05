@@ -9,12 +9,12 @@ addresses as (
 ),
 enriched as (
     select
-          * 
+          o.*, p.* exclude(promo_id, date_load), a.* exclude(address_id, date_load)
           from orders as o 
-          JOIN promos as p 
+          LEFT JOIN promos as p 
           ON o.promo_id=p.promo_id
-          JOIN addresses as a
-          ON o.address_id=p.address_id
+          LEFT JOIN addresses as a
+          ON o.address_id=a.address_id
 )
 
 select * from enriched
