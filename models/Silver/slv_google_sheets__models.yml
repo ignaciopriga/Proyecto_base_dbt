@@ -13,7 +13,6 @@ models:
               - unique
               - relationships:
                   arguments:
-                    to: ref('slv_sql_server_dbo__budgets')
-                    field: budget_id
+                    
               
 
