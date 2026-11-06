@@ -1,18 +1,16 @@
 version: 2
 
 models:
-  - name: google_sheets
-    database: DEV_SILVER_DB
-    schema: google_sheets
-    tables:
-      - name: budget
-        columns:
-          - name: _row
-            data_tests:
-              - not_null
-              - unique
-              - relationships:
-                  arguments:
-                    
-              
-
+  - name: slv_google_sheets__budget
+    columns:
+      - name: _row
+        data_tests: 
+          - unique
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: false
+          - relationships:
+              to: ref('slv_google_sheets__budget')
+              field: product_id
