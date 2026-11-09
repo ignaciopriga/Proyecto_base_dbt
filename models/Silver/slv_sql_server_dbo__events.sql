@@ -2,10 +2,11 @@
     config(
         materialized='incremental',
         incremental_strategy='merge',
-        unique_key='event_id'
+        unique_key='event_id',
+        on_schema_change='append_new_columns',
+        event_time='created_at_utc'
     )
 }}
-
 -- =============================================================================
 -- slv_sql_server_dbo__events
 -- =============================================================================
