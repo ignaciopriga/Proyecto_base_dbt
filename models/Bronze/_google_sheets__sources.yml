@@ -7,6 +7,9 @@ sources:
     tables:
       - name: budget
         columns:
+          - name: quantity
+            data_tests:
+              - positive_values
           - name: _row
             data_tests:
               - not_null
