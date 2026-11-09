@@ -3,6 +3,9 @@ version: 2
 models:
   - name: slv_google_sheets__budget
     columns:
+      - name: quantity_budgeted
+        data_tests:
+          - positive_values
       - name: _row
         data_tests: 
           - unique
