@@ -43,9 +43,10 @@ models:
 
     # --- Staging: casting y renaming, 1:1 con Bronze. Vistas: no ocupan
     #     almacenamiento y siempre reflejan Bronze.
-    staging:
+    Staging:
       +materialized: view
       +database: DEV_SILVER_DB
+      +tags: ['Staging']
       sql_server_dbo:
         +schema: sql_server_dbo
       google_sheets:
@@ -53,9 +54,10 @@ models:
 
     # --- Silver: limpieza y deduplicación. Tablas: la deduplicación es cara y
     #     no queremos repetirla en cada consulta.
-    silver:
+    Silver:
       +materialized: table
       +database: DEV_SILVER_DB
+      +tags: ['Silver']
       sql_server_dbo:
         +schema: sql_server_dbo
       google_sheets:
@@ -63,22 +65,26 @@ models:
 
     # --- Gold: consumo. La capa la marca la database; el tipo de tabla, el
     #     prefijo del modelo (dim_, fct_, agg_, int_).
-    gold:
+    Gold:
       +materialized: table
       +database: DEV_GOLD_DB
+      +tags: ['Gold']
       intermediate:
         +materialized: view
         +schema: intermediate
-      core:
-        +schema: core
+      Core:
+        +schema: Core
+        +tags: ['Core']
         +meta:
           owner: equipo-datos-core
       marketing:
         +schema: marketing
+        +tags: ['marketing']
         +meta:
           owner: equipo-marketing-analytics
-      product:
-        +schema: product
+      Product:
+        +schema: Product
+        +tags: ['Product']
         +meta:
           owner: equipo-producto
 
@@ -108,3 +114,11 @@ snapshots:
     +database: DEV_SILVER_DB
     +schema: snapshots
     +transient: false
+
+
+vars:
+  low_stock_threshold: 10
+  budget_start_date: '2024-01-01'
+
+on-run-end:
+  - "{{ log_run_summary(results) }}"
