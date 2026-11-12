@@ -21,6 +21,7 @@ final as (
         , delivered_at_utc
         , date_load
         , currenttimestamp() as loaded_at_utc
+        
     from orders
 )
 
