@@ -1,17 +1,12 @@
-with orders as (
-    select * from {{ ref('fct_orders.sql') }}
-),
-order_items as(
-    select * from {{ ref('fct_order_items.sql') }}
-)
+-- =============================================================================
+-- Test singular: todo pedido debe tener al menos una línea de pedido.
+-- =============================================================================
+-- Devuelve los pedidos de fct_orders que no aparecen en fct_order_items.
+-- =============================================================================
 
-final as (
-    select
-          o.*, oi.*
-    from orders as o
-    LEFT JOIN order_items as oi 
-    ON o.order_id = oi.order_id
-    where oi.product_id is null
-)
-
-select * from final
+select
+      o.order_id
+    , o.order_created_at_utc
+from {{ ref('fct_orders') }} o
+left join {{ ref('fct_order_items') }} oi on o.order_id = oi.order_id
+where oi.order_id is null
