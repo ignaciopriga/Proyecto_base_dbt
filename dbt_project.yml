@@ -44,8 +44,8 @@ vars:
 # =============================================================================
 # on-run-end se ejecuta una vez al terminar cada dbt run/build/test/seed/snapshot
 # y recibe `results` con el resultado de cada nodo.
-on-run-end:
-  - "{{ log_run_summary(results) }}"
+# on-run-end:
+#  - "{{ log_run_summary(results) }}"
 
 # =============================================================================
 # Modelos · arquitectura Medallion Cívica
