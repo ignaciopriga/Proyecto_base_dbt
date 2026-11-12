@@ -1,10 +1,10 @@
 {% docs purchase_segment %}
-Cuánto se ha comprado
-Presentation 
-| purchase_segment | Significado          |
-|------------------|----------------------|
-| never_bought     | Nunca se ha comprado |
-| one_purchase     | Una vez              |
-| two_purchases    | Dos veces            |
-| three_or_more    | Tres veces o más     |
+Segmento del usuario según el número de pedidos realizados.
+
+| purchase_segment | Regla                        |
+|------------------|------------------------------|
+| never_bought     | Ningún pedido                |
+| one_purchase     | 1 pedido                     |
+| two_purchases    | 2 pedidos                    |
+| three_or_more    | 3 pedidos o más              |
 {% enddocs %}

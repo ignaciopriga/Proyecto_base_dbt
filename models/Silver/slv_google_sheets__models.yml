@@ -14,6 +14,3 @@ models:
               arguments:
                 min_value: 0
                 inclusive: false
-          - relationships:
-              to: ref('slv_google_sheets__budget')
-              field: product_id
