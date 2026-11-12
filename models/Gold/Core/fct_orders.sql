@@ -20,7 +20,7 @@ final as (
         , estimated_delivery_at_utc
         , delivered_at_utc
         , date_load
-        , laincompae
+        , current_timestamp() as _loaded_at
     from orders
 )
 
